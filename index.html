@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>8 Наурыз Құтты Болсын!</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+            overflow: hidden;
+            margin: 0;
+            font-family: 'Pacifico', cursive;
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .card {
+            width: 450px;
+            height: 350px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            padding: 20px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            transition: transform 0.6s ease-in-out, opacity 0.6s;
+        }
+
+        .hidden {
+            transform: scale(0.5);
+            opacity: 0;
+            display: none;
+        }
+
+        h1 {
+            color: #d6336c;
+            font-size: 30px;
+            margin-bottom: 10px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        p {
+            color: #555;
+            font-size: 20px;
+            margin-bottom: 15px;
+            animation: fadeIn 2.5s ease-in-out;
+        }
+
+        .heart {
+            color: red;
+            font-size: 22px;
+            animation: heartbeat 1.5s infinite ease-in-out;
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #ff4a57, #ff85a2);
+            color: white;
+            font-size: 20px;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            font-family: 'Pacifico', cursive;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 15px rgba(255, 0, 102, 0.5);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .floating-flowers span {
+            position: absolute;
+            color: pink;
+            font-size: 24px;
+            opacity: 0.8;
+            animation: float 5s infinite alternate ease-in-out;
+        }
+
+        .floating-flowers span:nth-child(1) { top: 20px; left: 40px; animation-delay: 0s; }
+        .floating-flowers span:nth-child(2) { top: 60px; right: 30px; animation-delay: 0.5s; }
+        .floating-flowers span:nth-child(3) { bottom: 40px; left: 20px; animation-delay: 1s; }
+        .floating-flowers span:nth-child(4) { bottom: 50px; right: 50px; animation-delay: 1.5s; }
+
+        @keyframes float {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-10px); }
+        }
+
+        .particles {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .particles span {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            animation: sparkle 3s infinite ease-in-out;
+        }
+
+        @keyframes sparkle {
+            0% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.5); }
+            100% { opacity: 0.3; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="card" id="card1">
+        <h1>🌸 8 Наурыз Құтты Болсын! 🌸</h1>
+        <p>Көктемнің шуағындай көңіл күйіңіз әрдайым жарқырап тұрсын!</p>
+        <button class="btn" onclick="openCard()">Ашу</button>
+        <div class="floating-flowers">
+            <span>🌷</span><span>🌸</span><span>💮</span><span>🌿</span>
+        </div>
+    </div>
+
+    <div class="card hidden" id="card2">
+        <h1>🎉 Құрметті ханымдар! 🎉</h1>
+        <p>Сіздерді 8 Наурыз – Халықаралық әйелдер күнімен шын жүректен құттықтаймыз! 🌷</p>
+        <p>Әр күніңіз қуаныш пен махаббатқа толы болсын! <span class="heart">❤️</span></p>
+    </div>
+</div>
+
+<div class="particles">
+    <script>
+        for (let i = 0; i < 50; i++) {
+            let particle = document.createElement("span");
+            let size = Math.random() * 5 + 5;
+            let posX = Math.random() * window.innerWidth;
+            let posY = Math.random() * window.innerHeight;
+            let duration = Math.random() * 3 + 2;
+
+            particle.style.width = size + "px";
+            particle.style.height = size + "px";
+            particle.style.left = posX + "px";
+            particle.style.top = posY + "px";
+            particle.style.animationDuration = duration + "s";
+
+            document.querySelector(".particles").appendChild(particle);
+        }
+    </script>
+</div>
+
+<script>
+    function openCard() {
+        document.getElementById("card1").classList.add("hidden");
+        document.getElementById("card2").classList.remove("hidden");
+        document.getElementById("card2").style.display = "block";
+    }
+</script>
+
+</body>
+</html>
