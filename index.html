@@ -13,6 +13,7 @@
             align-items: center;
             height: 100vh;
             background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+            background-attachment: fixed;
             overflow: hidden;
             margin: 0;
             font-family: 'Pacifico', cursive;
@@ -37,6 +38,7 @@
             left: 50%;
             top: 50%;
             transform: translate(-50%, -50%);
+            transition: transform 0.6s ease-in-out, opacity 0.6s;
             animation: fadeIn 2s ease-in-out;
         }
 
@@ -66,12 +68,6 @@
             animation: heartbeat 1.5s infinite ease-in-out;
         }
 
-        @keyframes heartbeat {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.3); }
-            100% { transform: scale(1); }
-        }
-
         .btn {
             background: linear-gradient(135deg, #ff4a57, #ff85a2);
             color: white;
@@ -82,8 +78,6 @@
             cursor: pointer;
             transition: transform 0.3s, box-shadow 0.3s;
             font-family: 'Pacifico', cursive;
-            position: relative;
-            overflow: hidden;
             animation: pulse 2s infinite;
         }
 
@@ -103,16 +97,9 @@
             100% { transform: scale(1); }
         }
 
-        @media (max-width: 768px) {
-            h1 { font-size: 22px; }
-            p { font-size: 16px; }
-            .btn { font-size: 16px; padding: 8px 16px; }
-        }
-
         .gift {
             font-size: 50px;
             cursor: pointer;
-            display: inline-block;
             animation: bounce 1.5s infinite;
         }
 
@@ -127,27 +114,27 @@
         <div class="card" id="card1">
             <h1>🌸 8 Наурыз Құтты Болсын! 🌸</h1>
             <p>Көктемнің шуағындай көңіл күйіңіз әрдайым жарқырап тұрсын!</p>
-            <button class="btn" onclick="nextPage()">Далее</button>
+            <button class="btn" onclick="nextPage(1)">Келесі</button>
         </div>
+        
         <div class="card hidden" id="card2">
-            <h1>🎁 Сізге сыйлығым бар! 🎁</h1>
-            <p>Ашып көріңіз!</p>
-            <span class="gift" onclick="showGift()">🎁</span>
+            <h1>🎁 Сізге Арнайы Сыйлық! 🎁</h1>
+            <p>Подарокты ашу үшін басыңыз:</p>
+            <div class="gift" onclick="nextPage(2)">🎁</div>
         </div>
+
         <div class="card hidden" id="card3">
-            <h1>🎉 Сюрприз! 🎉</h1>
-            <p>Сізге арнап гүлдер! 🌷🌹🌺</p>
-            <img src="flowers.jpeg" alt="Flowers" style="width: 100%; border-radius: 10px;">
+            <h1>💐 Сізге Арналған Гүлдер! 💐</h1>
+            <p>Әр күніңіз осындай әдемі әрі жарқын болсын! ❤️</p>
+            <img src="https://cdn.pixabay.com/photo/2017/03/02/20/28/tulips-2117048_960_720.jpg" width="100%" style="border-radius: 15px;">
         </div>
     </div>
+    
     <script>
-        function nextPage() {
-            document.getElementById("card1").classList.add("hidden");
-            document.getElementById("card2").classList.remove("hidden");
-        }
-        function showGift() {
-            document.getElementById("card2").classList.add("hidden");
-            document.getElementById("card3").classList.remove("hidden");
+        function nextPage(page) {
+            document.getElementById("card" + page).classList.add("hidden");
+            document.getElementById("card" + (page + 1)).classList.remove("hidden");
+            document.getElementById("card" + (page + 1)).style.display = "block";
         }
     </script>
 </body>
